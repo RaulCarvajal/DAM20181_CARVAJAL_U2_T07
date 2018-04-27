@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { WelcomePage } from "../welcome/welcome";
 
 @Component({
   selector: 'page-home',
@@ -9,6 +10,10 @@ export class HomePage {
 
   constructor(public navCtrl: NavController) {
 
+  }
+
+  otraPag(){
+    this.navCtrl.push(WelcomePage);
   }
 
 }

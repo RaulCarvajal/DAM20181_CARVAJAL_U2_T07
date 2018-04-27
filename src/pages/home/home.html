@@ -1,14 +1,38 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Ejemplo 18
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list>
+      <ion-item>
+        <div class="img-container">
+         <img src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_960_720.png" alt="">          
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label floating >Nombre</ion-label>
+        <ion-input type="" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating >Email</ion-label>
+        <ion-input type="" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating >Telefono</ion-label>
+        <ion-input type="" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating >Comentario</ion-label>
+        <ion-input type="" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label> Acepta los terminos y condiciones</ion-label>
+        <ion-toggle checked="false"></ion-toggle>
+      </ion-item>
+  </ion-list>
+  <button ion-button block (click)="otraPag()" >Ingresar</button>
 </ion-content>

@@ -7,32 +7,60 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-      <ion-item>
-        <div class="img-container">
-         <img src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_960_720.png" alt="">          
-        </div>
-      </ion-item>
-      <ion-item>
-        <ion-label floating >Nombre</ion-label>
-        <ion-input type="" ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating >Email</ion-label>
-        <ion-input type="" ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating >Telefono</ion-label>
-        <ion-input type="" ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating >Comentario</ion-label>
-        <ion-input type="" ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label> Acepta los terminos y condiciones</ion-label>
-        <ion-toggle checked="false"></ion-toggle>
-      </ion-item>
-  </ion-list>
-  <button ion-button block (click)="otraPag()" >Ingresar</button>
+  <form [formGroup]="miForm" (ngSubmit)="otraPag()" novalidate>
+      <ion-list>
+          <ion-item>
+            <div class="img-container">
+             <img src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_960_720.png" alt="">          
+            </div>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating >Nombre</ion-label>
+            <ion-input type="" formControlName="nombre"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="miForm.get('nombre').errors && miForm.get('nombre').dirty">
+            <p *ngIf="miForm.get('nombre').hasError('required')" class="error">Campo requerido</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating >Email</ion-label>
+            <ion-input type="" formControlName="correo"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="miForm.get('correo').errors && miForm.get('correo').dirty">
+            <p *ngIf="miForm.get('correo').hasError('required')" class="error">El correo es requerido.</p>
+            <p *ngIf="miForm.get('correo').hasError('email')" class="error">El correo electronico indicado no es valido.</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating >Telefono</ion-label>
+            <ion-input type="" formControlName="tel"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="miForm.get('tel').errors && miForm.get('tel').dirty">
+            <p *ngIf="miForm.get('tel').hasError('required')" class="error">Campo requerido</p>
+            <p *ngIf="miForm.get('tel').hasError('minlength')" class="error">Min of 7 caracteres</p>
+            <p *ngIf="miForm.get('tel').hasError('maxlength')" class="error">Max of 10 caracteres</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating >Comentario</ion-label>
+            <ion-input type="" formControlName="com"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="miForm.get('com').errors && miForm.get('com').dirty">
+            <p *ngIf="miForm.get('com').hasError('required')" class="error">Campo requerido</p>
+            <p *ngIf="miForm.get('com').hasError('minlength')" class="error">Min of 10 caracteres</p>
+            <p *ngIf="miForm.get('com').hasError('maxlength')" class="error">Max of 50 caracteres</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label> Acepta los terminos y condiciones</ion-label>
+            <ion-toggle checked="false" formControlName="term"></ion-toggle>
+          </ion-item>
+          <ion-item *ngIf="miForm.get('term').errors && miForm.get('term').dirty">
+            <p *ngIf="miForm.get('numero').hasError('required')" class="error">Campo requerido</p>
+          </ion-item>
+
+      </ion-list>
+      <button ion-button block (click)="otraPag()" type="submit" [disabled]="miForm.invalid">Ingresar</button>
+  </form>
 </ion-content>
